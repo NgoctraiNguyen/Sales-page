@@ -29,31 +29,31 @@
         {% comment %} header {% endcomment %}
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid">
-              <a class="navbar-brand" href="#">Navbar</a>
+              <a class="navbar-brand" href="#"><img src="{%static 'app/images/Neel.png' %}" width="50" height="50"></a>
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
               </button>
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                   <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
+                    <a class="nav-link active" aria-current="page" href="#">Trang chủ</a>
                   </li>
                   <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      Dropdown
+                      Sản phẩm
                     </a>
                     <ul class="dropdown-menu">
-                      <li><a class="dropdown-item" href="#">Action</a></li>
+                      <li><a class="dropdown-item" href="#">Sữa</a></li>
                       <li><a class="dropdown-item" href="#">Another action</a></li>
                       <li><hr class="dropdown-divider"></li>
                       <li><a class="dropdown-item" href="#">Something else here</a></li>
                     </ul>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link disabled">Disabled</a>
+                    <a class="nav-link" href="#">Giới thiệu</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Liên hệ</a>
                   </li>
                 </ul>
                 <form class="d-flex" role="search">
@@ -61,6 +61,27 @@
                   <button class="btn btn-outline-success" type="submit">Search</button>
                 </form>
               </div>
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    user
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Trang chủ</a></li>
+                    <li><a class="dropdown-item" href="#">Đơn hàng</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="#">Đăng xuất</a></li>
+                  </ul>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Giỏ hàng</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">đăng nhập</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Đăng ký</a>
+                  </li>
+              </ul>
             </div>
           </nav>
 
@@ -69,7 +90,7 @@
           
 
           {% comment %} footer {% endcomment %}
-          <footer>
+          <footer class='container--fluid bg-success text-center fixed-bottom p-2 mt-5'>
             copyright 2023
           </footer>
     </body>
