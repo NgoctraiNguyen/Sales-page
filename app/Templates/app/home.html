@@ -49,18 +49,19 @@
   </div>
 {% endblock banner-slider %}
 {% block main-content %}
-    <div class="row">
-        <div class="col-lg-4">
-            <img src="{%static 'app/images/cow-ghee.png'%}" alt="" class="thumbnail">
+    <div class="row" style="width: 100%">
+      {%for product in products%}
+        <div class="col-lg-3">
+            <img src="{%static 'app/images/milk-shake-vanilla.png'%}" alt="" class="thumbnail">
             <div class="box-element product">
-                <h6><strong>Sản Phẩm</strong></h6>
+                <h6><strong>{{product.name}}</strong></h6>
                 <hr>
-
                 <button class="btn btn-outline-secondary add-btn">Thêm vào giỏ hàng</button>
                 <a href="#" class="btn btn-outline-success">Xem</a>
-                <h4 style="display: inline-block; float: right"><strong>200.000 VNĐ</strong></h4>
+                <h4 style="display: inline-block; float: right"><strong>${{product.price}}</strong></h4>
             </div>
         </div>
+      {% endfor %}
     </div>
 <br />
 <br />
