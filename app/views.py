@@ -9,4 +9,11 @@ def home(request):
     return render(request, 'app/home.html', context)
 
 def cart(request):
-    return render(request, 'app/cart.html')
+    if request.user.is_authenticated:
+        customer = request.user.customer
+        order, create = Order.objects.get_or_create(customer= customer, complete= False)
+        items = order.orderitem_set.all()
+    else:
+        items = []
+    context = {'items': items, 'order': order}
+    return render(request, 'app/cart.html', context) 
