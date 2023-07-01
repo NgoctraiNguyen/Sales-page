@@ -90,3 +90,18 @@ def loginpage(request):
 def logoutpage(request):
     logout(request)
     return redirect('login')
+
+def search(request):
+    if request.user.is_authenticated:
+        customer = request.user
+        order, create = Order.objects.get_or_create(customer= customer, complete= False)
+        cartitems = order.get_cart_items
+    else:
+        order = {'get_cart_items': 0, 'get_cart_total': 0}
+        cartitems = order['get_cart_items']
+
+    if request.method == 'POST':
+        key_search = request.POST.get('search')
+        product_search = Product.objects.filter(name__contains = key_search)
+    context = {'key_search': key_search, 'products': product_search, 'cartitems': cartitems}
+    return render(request, 'app/search.html', context)
