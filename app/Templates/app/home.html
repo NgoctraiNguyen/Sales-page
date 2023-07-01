@@ -56,7 +56,7 @@
             <div class="box-element product">
                 <h6><strong>{{product.name}}</strong></h6>
                 <hr>
-                <button class="btn btn-outline-secondary add-btn">Thêm vào giỏ hàng</button>
+                <button data-product={{product.id}} data-action='add' class="btn btn-outline-secondary add-btn update-cart">Thêm vào giỏ hàng</button>
                 <a href="#" class="btn btn-outline-success">Xem</a>
                 <h4 style="display: inline-block; float: right"><strong>${{product.price}}</strong></h4>
             </div>
