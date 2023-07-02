@@ -9,7 +9,7 @@
       <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="3" aria-label="Slide 4"></button>
     </div>
     <div class="carousel-inner">
-      <div class="carousel-item active" data-bs-interval="10000">
+      <div class="carousel-item active" data-bs-interval="2000">
         <img src="{%static 'app/images/banner/b1.jpg'%}" class="d-block w-100" alt="Tinh dầu NEEL" height='400'>
         <div class="carousel-caption d-none d-md-block text-white">
           <h5>Tinh dầu NEEL</h5>
@@ -57,7 +57,7 @@
                 <h6><strong>{{product.name}}</strong></h6>
                 <hr>
                 <button data-product={{product.id}} data-action='add' class="btn btn-outline-secondary add-btn update-cart">Thêm vào giỏ hàng</button>
-                <a href="#" class="btn btn-outline-success">Xem</a>
+                <a href="{% url 'detailproduct' %}?productid={{product.id}}" class="btn btn-outline-primary">Xem</a>
                 <h4 style="display: inline-block; float: right"><strong>${{product.price}}</strong></h4>
             </div>
         </div>

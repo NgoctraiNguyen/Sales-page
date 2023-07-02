@@ -16,7 +16,8 @@ def home(request):
         order = {'get_cart_items': 0, 'get_cart_total': 0}
         cartitems = order['get_cart_items']
     products = Product.objects.all()
-    context = {'products': products, 'cartitems': cartitems}
+    categorys = Category.objects.all()
+    context = {'products': products, 'cartitems': cartitems, 'categorys': categorys}
     return render(request, 'app/home.html', context)
 
 def cart(request):
@@ -29,7 +30,9 @@ def cart(request):
         items = []
         order = {'get_cart_items': 0, 'get_cart_total': 0}
         cartitems = order['get_cart_items']
-    context = {'items': items, 'order': order, 'cartitems': cartitems}
+
+    categorys = Category.objects.all()
+    context = {'items': items, 'order': order, 'cartitems': cartitems, 'categorys': categorys}
     return render(request, 'app/cart.html', context) 
 
 def checkout(request):
@@ -42,7 +45,9 @@ def checkout(request):
         items = []
         order = {'get_cart_items': 0, 'get_cart_total': 0}
         cartitems = order['get_cart_items']
-    context = {'items': items, 'order': order, 'cartitems': cartitems}
+
+    categorys = Category.objects.all()
+    context = {'items': items, 'order': order, 'cartitems': cartitems, 'categorys': categorys}
     return render(request, 'app/checkout.html', context)
 
 def updateItem(request):
@@ -69,7 +74,9 @@ def register(request):
         if form.is_valid():
             form.save()
             return redirect('login')
-    context = {'form': form}
+    cartitems = 0    
+    categorys = Category.objects.all()
+    context = {'form': form, 'categorys': categorys, 'cartitems': cartitems}
     return render(request, 'app/register.html', context)
 
 def loginpage(request):
@@ -84,7 +91,9 @@ def loginpage(request):
             return redirect('home')
         else: messages.info(request, 'User or password not corect!')
 
-    context = {}
+    cartitems = 0 
+    categorys = Category.objects.all()
+    context = {'categorys': categorys, 'cartitems': cartitems}
     return render(request, 'app/login.html', context)
 
 def logoutpage(request):
@@ -103,5 +112,28 @@ def search(request):
     if request.method == 'POST':
         key_search = request.POST.get('search')
         product_search = Product.objects.filter(name__contains = key_search)
-    context = {'key_search': key_search, 'products': product_search, 'cartitems': cartitems}
+
+    categorys = Category.objects.all()
+    context = {'key_search': key_search, 'products': product_search, 'cartitems': cartitems, 'categorys': categorys}
     return render(request, 'app/search.html', context)
+
+def category(request):
+    category_slug = request.GET.get('category')
+    category = Category.objects.filter(slug = category_slug).values_list('name', flat= True).distinct()
+    products = Product.objects.filter(category__slug= category_slug)
+    categorys = Category.objects.all()
+    context = {'category': category[0], 'products': products, 'categorys': categorys, 'cartitems': 0}
+    return render(request, 'app/category.html', context)
+
+def detailproduct(request):
+    if request.user.is_authenticated:
+        customer = request.user
+        order, create = Order.objects.get_or_create(customer= customer, complete= False)
+        cartitems = order.get_cart_items
+    else:
+        order = {'get_cart_items': 0, 'get_cart_total': 0}
+        cartitems = order['get_cart_items']
+    productId = request.GET.get('productid')
+    products = Product.objects.filter(id= productId)
+    context = {'products': products, 'cartitems': cartitems}
+    return render(request, 'app/detailproduct.html', context)
